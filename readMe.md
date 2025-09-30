@@ -9,6 +9,8 @@ This project utilizes several programming strategies to create a workable game o
 - [Event Validations](#event-validations)
 - [Summary](#summary)
 
+[Live Demo](#https://markbjohns.github.io/solitaire-js/)
+
 ## APIs - `https://deckofcardsapi.com` 
 
 In order to get a full deck of shuffled cards, a request is made to the API:
