@@ -58,7 +58,8 @@ To make the cards draggable, I am utilizing the `interact.js` library, which hel
 interact('.foundation').dropzone({
     accept: '.card',
     ondrop(e) {
-        // use Card instance data to determine if the card being drapped into the pile is a legal move
+        // use Card instance data to determine if the card being drapped into the pile
+        //  is a legal move
     }
 });
 
@@ -198,7 +199,8 @@ const makeLegalMove = (card) => {
     const { parent, fromProxy } = card;
     
     if (parent === wasteProxy) {
-        // From the waste pile, check for available moves in the foundations first, then the tableaus
+        // From the waste pile, check for available moves in the foundations first,
+        //  then the tableaus
         for (const [el, proxy] of foundationProxies) {
             if (validFoundationMove(card, el)) {
                 proxy.push(fromProxy.pop());
