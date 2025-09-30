@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solitaire</title>
+    <style>
+        body { 
+            color: white; 
+            background: green; 
+        } 
+        .container { 
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr)); 
+            gap: 10px;
+            width: min(calc(100vw - 30px), 1200px);
+            place-self: center;
+        } 
+        .card { 
+            width: 100%;
+            aspect-ratio: 5 / 7;
+            touch-action: none;
+            user-select: none;
+        } 
+        .card.dragging { 
+            z-index: 999 !important; 
+        } 
+        .stock { 
+            grid-column: 1; 
+            width: 100%;
+            border: 1px solid black;
+            border-radius: 10px;
+            aspect-ratio: 5 / 7;
+            display: block;
+            background-size: contain;
+        } 
+        .waste { 
+            grid-column: 2;
+            width: 100%;
+            border: 1px solid black;
+            border-radius: 10px;
+            aspect-ratio: 5 / 7;
+            display: grid;
+            overflow: visible;
+            position: relative;
+        } 
+        .waste > .card { 
+            grid-area: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            position: absolute;
+        } 
+        .foundation { 
+            width: 100%;
+            border: 1px solid black; 
+            border-radius: 10px;
+            aspect-ratio: 5 / 7;
+            display: grid;
+            overflow: visible;
+        } 
+        .foundation.first { 
+            grid-column: 4; 
+        } 
+        .foundation > .card { 
+            grid-area: 1 / 1;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        } 
+        .tableau { 
+            grid-row: 2; 
+            border: 1px solid black;
+            border-radius: 10px;
+            aspect-ratio: 5 / 7;
+            display: block;
+            overflow: visible;
+            position: relative;
+        }
+         .tableau { 
+            grid-row: 2; 
+            border: 1px solid black;
+            border-radius: 10px;
+            aspect-ratio: 5 / 7;
+            display: block;
+            overflow: visible;
+            position: relative;
+        } 
+        .tableau > .card { 
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+        .restart:not([open]) {
+            display: none;
+        }
+        .restart {
+            width: 80vw;
+            height: 75%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            color: black;
+        }
+        .restart .title {
+            width: 100%;
+            font-size: 80px;
+            text-align: center;
+        }
+        .restart .subtitle {
+            width: 80%;
+            font-size: 4vh;
+        }
+        .restart .button {
+            width: 10vw;
+            height: 5vh;
+            text-align: center;
+            color: white;
+            background: green;
+        }
+        
+        .restart .button:hover {
+            background: darkgreen;
+            color: whitesmoke;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Solitaire</h1>
+    
+    <div class="container">
+        <div class="stock"></div>
+        <div class="waste"></div>
+        
+        <div class="foundation first"></div>
+        <div class="foundation"></div>
+        <div class="foundation"></div>
+        <div class="foundation"></div>
+        
+        <div class="tableau"></div>
+        <div class="tableau"></div>
+        <div class="tableau"></div>
+        <div class="tableau"></div>
+        <div class="tableau"></div>
+        <div class="tableau"></div>
+        <div class="tableau"></div>
+    </div>
+    
+    <dialog class="restart">
+        <span class="title">Congratulations</span>
+        <button class="button" type="button">
+            New Game
+        </button>
+    </dialog>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
