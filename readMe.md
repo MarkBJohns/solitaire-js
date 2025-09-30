@@ -9,7 +9,7 @@ This project utilizes several programming strategies to create a workable game o
 - [Event Validations](#event-validations)
 - [Summary](#summary)
 
-[Live Demo](#https://markbjohns.github.io/solitaire-js/)
+[Live Demo](https://markbjohns.github.io/solitaire-js/)
 
 ## APIs - `https://deckofcardsapi.com` 
 
