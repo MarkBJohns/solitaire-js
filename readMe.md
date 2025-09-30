@@ -344,7 +344,8 @@ interact('.card').draggable({
             if (domCard === parent.lastElementChild) {
                 ...
             } else {
-                // If a stack of cards are being dragged, each card after the top card needs to be targeted
+                // If a stack of cards are being dragged, each card after the top card
+                //  needs to be targeted
                 trailingCards = [...parent.children].slice([...parent.children].indexOf(domCard));
             }
             ...
