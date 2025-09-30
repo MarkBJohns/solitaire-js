@@ -65,23 +65,28 @@ interact('.foundation').dropzone({
 interact('.tableau').dropzone({
     accept: '.card',
     ondrop(e) {
-        // use Card instance data to determine if the card, or stack of cards, being drapped into the pile is a legal move
+        // use Card instance data to determine if the card, or stack of cards, being dragged into
+        //  the pile is a legal move
     }
 });
 
 const makeCardsDraggable = () => {
-    // Because .card elements are created and destroyed regularly, the event listener needs to be regularly updated via a callable function
+    // Because .card elements are created and destroyed regularly, the event listener needs to be
+    //  regularly updated via a callable function
     interact('.card').draggable({
         listeners: {
             start(e) {
-                // initialize the dragging event by bookmarking metadata, which will determine is a move is legal or not
+                // initialize the dragging event by bookmarking metadata, which will determine if
+                //  a move is legal or not
             },
             move(e) {
-                // update the coordinates of the .card, or stack of .card elements, in real time with the user's cursor
+                // update the coordinates of the .card, or stack of .card elements, in real time
+                //  with the user's cursor
             },
             end(e) {
-                // If the dropzone does not accept the .card, or the .card is dragged into anywhere except for a dropzone,
-                //  the drop is rejected and the .card snaps back to the original pile
+                // If the dropzone does not accept the .card, or the .card is dragged into
+                //  anywhere except for a dropzone, the drop is rejected and the .card snaps
+                //  back to the original pile
             }
         }
     });
@@ -124,14 +129,16 @@ const wasteProxy = new Proxy([], {
 
 const addToWaste = (card) => {
     // 1. Take in a Card instance and create a DOM card from it
-    // 2. If there are already two DOM cards, remove the first one (the bottom card), and place the new card on top of the pile.
+    // 2. If there are already two DOM cards, remove the first one (the bottom card),
+    //  and place the new card on top of the pile.
 }
 
 const removeFromWaste = () => {
     // 1. Remove the current top card, making the bottom card the new top
     // 2. If there was more than one Card in the proxy, the pile needs a new bottom card as well, 
     //  represented by wasteProxy.at(-2)
-    // 3. That new DOM card needs to be added before the top DOM card, so it's visible when the top card is removed
+    // 3. That new DOM card needs to be added before the top DOM card, so it's visible when the
+    //  top card is removed
 }
 ```
 
@@ -174,11 +181,13 @@ const validFoundationMove = (card, pile) => {
 }
 
 const validTableauMove = (card, pile) => {
-    // 1. As the cards are added to the tableaus before the game even starts, I don't want to reject any 
-    //  incoming cards until the setup is complete. Until all cards are in place, return "true"
+    // 1. As the cards are added to the tableaus before the game even starts, I don't want to
+    //  reject any incoming cards until the setup is complete. Until all cards are in place,
+    //  return "true"
     // 2. Check if the pile is empty and the card is a King, return "true"
     // 3. Check if the pile is empty, return "false"
-    // 4. Return whether the card is a different color and the value is one less than the current top card
+    // 4. Return whether the card is a different color and the value is one less than the
+    //  current top card
 }
 ```
 
@@ -214,14 +223,14 @@ const makeLegalMove = (card) => {
         }
     }
     
-    // If the pile is a tableau, check if it's a single card vs a stack. Single cards check for a foundation move,
-    //  then a tableau move. Stacks only check for a tableau move.
+    // If the pile is a tableau, check if it's a single card vs a stack. Single cards check for a
+    //  foundation move, then a tableau move. Stacks only check for a tableau move.
     if (tableauProxies.get(parent)) {
         // Tableau piles have separate proxies for active and inactive cards
         const { active: fromActive } = fromProxy;
         
-        // Card instances are given an "activeIdx" property to distinguish between the index of the DOM cards 
-        //  and the index of the active cards.
+        // Card instances are given an "activeIdx" property to distinguish between the index of
+        //  the DOM cards and the index of the active cards.
         
         // This is used to determine if the user is moving a single card, or a stack of cards
         if (card.activeIdx === fromActive.length - 1) {
