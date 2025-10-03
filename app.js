@@ -23,6 +23,7 @@ const wastePileEl = document.querySelector(('.waste'));
 const foundationEls = document.querySelectorAll('.foundation');
 const tableauEls = document.querySelectorAll('.tableau');
 const restartMenu = document.querySelector('.restart');
+const newGameButton = document.querySelector('.new-game');
 
 stockPileEl.style.background = stockPileBackground;
 
@@ -420,6 +421,8 @@ class Card {
 // =========================================================================== //
 // GAME STATE HANDLERS                                                        //
 //___________________________________________________________________________//
+
+newGameButton.addEventListener('click', () => window.location.reload());
 
 const drawCard = () => {
     if (!stockCards.length && !wasteProxy.length) return;
